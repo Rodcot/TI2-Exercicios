@@ -60,11 +60,11 @@ public class DAO {
 		return status;
 	}
 	
-	public boolean atualizarUsuario(Usuario usuario) {
+	public boolean atualizarUsuario(int codigo) {
 		boolean status = false;
 		try {  
 			Statement st = conexao.createStatement();
-			String sql = "UPDATE usuario SET login = '" + usuario.getLogin() + "', senha = '"  
+			String sql = "UPDATE usuario WHERE codigo = " + codigo + " SET login = '" + usuario.getLogin() + "', senha = '"  
 				       + usuario.getSenha() + "', sexo = '" + usuario.getSexo() + "', idade = '"  
 				       + usuario.getIdade() + "'" + " WHERE codigo = " + usuario.getCodigo();
 			st.executeUpdate(sql);
