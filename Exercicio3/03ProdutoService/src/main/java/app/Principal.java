@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Principal {
     public static void main(String[] args) {
-    	port(5433);
+    	port(7070);
     	
     	ProdutoService service = new ProdutoService();
     	
