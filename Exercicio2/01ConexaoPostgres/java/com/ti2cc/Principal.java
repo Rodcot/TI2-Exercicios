@@ -41,10 +41,30 @@ public class Principal {
 
 			//Atualizar usuário
 			if(option == 4) {
-				System.out.println("Digite nova senha: ");
-				String novaSenha = sc.nextLine();
-				usuario.setSenha(novaSenha);
-				dao.atualizarUsuario(usuario);
+				System.out.print("Digite o código do usuário para atualizar: ");
+				codigo = sc.nextInt();
+				System.out.print("Digite 1.login/2.senha/3.sexo/4.idade para atualizar: ");
+				String option = sc.nextInt();
+				if(option == 1){
+					System.out.print("Digite novo login: ");
+					String novoLogin = sc.nextLine();
+					dao.setLogin(novoLogin);
+				}else if(option == 2){
+					System.out.print("Digite nova senha: ");
+					String novaSenha = sc.nextLine();
+					dao.setSenha(novaSenha);
+				}else if(option == 3){
+					System.out.print("Digite novo valor de sexo: ");
+					char novoSexo = sc.next().charAt(0);
+					dao.setSexo(novoSexo);
+				}else if(option == 4){
+					System.out.print("Digite nova idade: ");
+					int novaIdade = sc.nextInt();
+					dao.setIdade(novaIdade);
+				}else{
+					System.out.print("Houve um problema na atualização");
+				}
+				dao.atualizarUsuario(codigo);
 			}
 			
 			//Excluir usuário
