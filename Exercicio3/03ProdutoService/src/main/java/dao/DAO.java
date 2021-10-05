@@ -24,11 +24,11 @@ public class DAO {
 			Class.forName(driverName);
 			conexao = DriverManager.getConnection(url, username, password);
 			status = (conexao == null);
-			System.out.println("Conex√£o efetuada com o postgres!");
+			System.out.println("Conex„o efetuada com o postgres!");
 		} catch (ClassNotFoundException e) {
-			System.err.println("Conex√£o N√ÉO efetuada com o postgres -- Driver n√£o encontrado -- " + e.getMessage());
+			System.err.println("Conex„o N√O efetuada com o postgres -- Driver n„o encontrado -- " + e.getMessage());
 		} catch (SQLException e) {
-			System.err.println("Conex√£o N√ÉO efetuada com o postgres -- " + e.getMessage());
+			System.err.println("Conex„o N√O efetuada com o postgres -- " + e.getMessage());
 		}
 		
 		return status;	
@@ -84,15 +84,16 @@ public class DAO {
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);;
 			ResultSet rs = st.executeQuery("SELECT * FROM produto WHERE  id = '" + id + "'");
-			rs.next();
-			produto = new Produto(
-				rs.getInt("id"),
-				rs.getString("descricao"),
-				rs.getFloat("preco"),
-				rs.getInt("quantidade"),
-				rs.getDate("dataFabricacao"),
-				rs.getDate("dataValidade")
-			);			
+			if(rs.next()) {
+				produto = new Produto(
+						rs.getInt("id"),
+						rs.getString("descricao"),
+						rs.getFloat("preco"),
+						rs.getInt("quantidade"),
+						rs.getDate("dataFabricacao"),
+						rs.getDate("dataValidade")
+					);
+			}		
 			st.close();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
