@@ -2,7 +2,6 @@ package app;
 
 import service.ProdutoService;
 import static spark.Spark.*;
-import java.util.*;
 
 public class Principal {
     public static void main(String[] args) {

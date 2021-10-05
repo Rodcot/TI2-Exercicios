@@ -3,7 +3,6 @@ package model;
 import java.util.Date;
 
 public class Produto {
-	private static final long serialVersionUID = 1L;
 	public static final String DESCRICAO_PADRAO = "Novo Produto";
 	public static final int MAX_ESTOQUE = 1000;
 	
@@ -87,7 +86,6 @@ public class Produto {
 	}
 	
 	public void setDataValidade(Date dataValidade) {
-		Date agora = new Date();
 		if (dataFabricacao.before(dataValidade)) {
 			this.dataValidade = dataValidade;			
 		}
